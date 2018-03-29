@@ -62,7 +62,7 @@ class CourseController extends AdminController
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit($course)
     {
         $courses = Course::where('id' , "=" ,$course)->first();
         return view('Admin.courses.edit' , compact('courses'));
@@ -83,7 +83,7 @@ class CourseController extends AdminController
         $price = $request->input('price');
         $tags = $request->input('tags');
         Course::where('id' , $course)->update(['title'=>$title , 'type'=>$type , 'body'=>$body , 'price'=>$price , 'tags'=>$tags]);
-        return back();
+        return redirect(route('Course.index'));
     }
 
     /**

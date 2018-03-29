@@ -9,7 +9,7 @@
     </script>
 @endsection
 @section('content')
-    <form action="{{ route('Article.update' , ['Article' => $articles->id]) }}" method="post" class="form-horizontal" enctype="multipart/form-data"
+    <form action="{{ route('Course.update' , ['Course' => $courses->id]) }}" method="post" class="form-horizontal" enctype="multipart/form-data"
           style="text-align: right">
 
         @include('Admin.section.errors')
@@ -18,25 +18,30 @@
         <div class="form-group">
             <label for="title">موضوع</label>
             <input type="text" class="form-control" id="title" placeholder="موضوع را وارد کنید" name="title"
-                   value="{{ $articles->title }}">
+                   value="{{ $courses->title }}">
         </div>
+
         <div class="form-group">
-            <label for="description">توضیخات</label>
-            <input class="form-control" id="description" type="text" name="description"
-                   placeholder="توضیخات را وارد کنید" value="{{ $articles->description }}">
+            <label for="type">نوع دوره</label>
+            <select name="type" class="form-control col-sm-12">
+                <option value="vip" {{ $courses->type=='vip' ? 'selected' : '' }}>اعضای ویژه</option>
+                <option value="free" {{ $courses->type=='free' ? 'selected' : '' }}>رایگان</option>
+                <option value="cash" {{ $courses->type=='cash' ? 'selected' : '' }}>نقدی</option>
+            </select>
         </div>
+
         <div class="form-group">
             <label for="body">متن</label>
             <textarea class="form-control" id="body" rows="6" name="body"
-                      placeholder="متن را وارد کنید">{{ $articles->body }}</textarea>
+                      placeholder="متن را وارد کنید">{{ $courses->body }}</textarea>
         </div>
         <div class="form-group">
             <div class="col-sm-12">
-                <img src="{{ $articles->images}}" width="100" height="100">
+                <img src="{{ $courses->images}}" width="100" height="100">
             </div>
         </div>
 <div class="form-group">
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <label for="images">تصویر</label>
                 <label class="form-control">
                     <input type="file" id="images" name="images">
@@ -46,12 +51,20 @@
 
         <div class="form-group">
             <div class="col-sm-6">
+                <label for="price">قیمت</label>
+                <input class="form-control " id="price" type="text" name="price" placeholder="تگ ها را وارد کنید"
+                       value="{{ $courses->price }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6">
                 <label for="tags">تگ ها</label>
                 <input class="form-control " id="tags" type="text" name="tags" placeholder="تگ ها را وارد کنید"
-                       value="{{ $articles->tags }}">
+                       value="{{ $courses->tags }}">
             </div>
         </div>
         <div class="form-group col-sm-12">
+            <br>
             <button class="btn btn-sm btn-outline-primary" type="submit">ویرایش مقاله</button>
         </div>
     </form>

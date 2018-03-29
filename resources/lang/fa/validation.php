@@ -133,6 +133,8 @@ return array(
         "slug" => "نامک",
         "tags" => "تگ ها",
         "category" => "دسته",
-        "images" => "تصویر"
+        "images" => "تصویر",
+        "type" => "نوع",
+        "price" => "قیمت",
     ),
 );

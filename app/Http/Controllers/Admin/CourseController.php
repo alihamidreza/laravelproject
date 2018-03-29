@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Course;
+use App\Http\Requests\CourseRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +17,7 @@ class CourseController extends AdminController
     public function index()
     {
         $courses = Course::latest()->paginate(15);
-        return view('Admin.articles.all' , compact('courses'));
+        return view('Admin.courses.all' , compact('courses'));
     }
 
     /**
@@ -35,12 +36,12 @@ class CourseController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CourseRequest $request)
     {
         auth()->loginUsingId(170);
         $file = $request->file('images');
         $imageUrl = $this->uploadImages($file);
-        auth()->user()->article()->create(array_merge($request->all() , ['images' => $imageUrl]));
+        auth()->user()->course()->create(array_merge($request->all() , ['images' => $imageUrl]));
         return redirect(route('Course.index'));
     }
 
@@ -63,7 +64,7 @@ class CourseController extends AdminController
      */
     public function edit(Course $course)
     {
-        $courses = Article::where('id' , "=" ,$course)->first();
+        $courses = Course::where('id' , "=" ,$course)->first();
         return view('Admin.courses.edit' , compact('courses'));
     }
 

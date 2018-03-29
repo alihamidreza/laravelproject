@@ -48,7 +48,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/panel/course">
+                <a class="nav-link" href="/admin/Course">
                     <span data-feather="file-text"></span>
                     دوره ها
                 </a>

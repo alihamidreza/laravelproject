@@ -34,4 +34,8 @@ class course extends Model
     {
         return $this->hasMany(Comment::class);
     }
+    public function episode()
+    {
+        return $this->hasMany(Episode::class);
+    }
 }

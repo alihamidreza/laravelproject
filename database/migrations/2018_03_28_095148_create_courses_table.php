@@ -22,6 +22,7 @@ class CreateCoursesTable extends Migration
             $table->text('body');
             $table->string('type');
             $table->string('images');
+            $table->string('time' , 15)->default('00:00:00');
             $table->string('tags');
             $table->integer('price');
             $table->integer('commentCount')->default(0);

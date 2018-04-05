@@ -18,5 +18,6 @@ Route::namespace('Admin')->prefix('admin')->group(function (){
     $this->get('/' , 'PanelController@index');
     $this->resource('Article' , 'ArticleController');
     $this->resource('Course' , 'CourseController');
+    $this->resource('Episode' , 'EpisodeController');
     $this->get('/Article/{article}/comments' , 'ArticleController@comments')->name('ArticleComments.show');
 });

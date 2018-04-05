@@ -53,6 +53,12 @@
                     دوره ها
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/Episode">
+                    <span data-feather="file-text"></span>
+                    قسمت ها
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

@@ -9,59 +9,72 @@
     </script>
 @endsection
 @section('content')
-    <form action="{{ route('Course.update' , ['Course' => $courses->id]) }}" method="post" class="form-horizontal" enctype="multipart/form-data"
+    <form action="{{ route('Episode.update' , ['Episode' => $episode->id]) }}" method="post" class="form-horizontal"
           style="text-align: right">
 
         @include('Admin.section.errors')
-        {{ method_field('patch') }}
+        {{ method_field('PATCH') }}
         {{ csrf_field() }}
         <div class="form-group">
             <label for="title">موضوع</label>
             <input type="text" class="form-control" id="title" placeholder="موضوع را وارد کنید" name="title"
-                   value="{{ $courses->title }}">
+                   value="{{ $episode->title }}">
         </div>
 
         <div class="form-group">
-            <label for="type">نوع دوره</label>
+            <label for="type">نوع قسمت</label>
             <select name="type" class="form-control col-sm-12">
-                <option value="vip" {{ $courses->type=='vip' ? 'selected' : '' }}>اعضای ویژه</option>
-                <option value="free" {{ $courses->type=='free' ? 'selected' : '' }}>رایگان</option>
-                <option value="cash" {{ $courses->type=='cash' ? 'selected' : '' }}>نقدی</option>
+                <option value="lock" {{ $episode->type=='lock' ? 'selected' : '' }}>قفل</option>
+                <option value="free" {{ $episode->type=='free' ? 'selected' : '' }}>رایگان</option>
             </select>
-        </div>
-
-        <div class="form-group">
-            <label for="body">متن</label>
-            <textarea class="form-control" id="body" rows="6" name="body"
-                      placeholder="متن را وارد کنید">{{ $courses->body }}</textarea>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-12">
-                <img src="{{ $courses->images}}" width="100" height="100">
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <br>
+                    <label for="videoUrl">دوره قسمت</label>
+                    <select name="course_id" class="form-control">
+                        <option value="{{ $episode->course_id }}">{{ $episode->course->title }}</option>
+                        @foreach(App\course::latest()->get() as $course)
+                            <option value="{{ $course->id }}">{{ $course->title }}</option>
+                        @endforeach
+                    </select>
+                    <br>
+                </div>
             </div>
         </div>
+        <br>
         <div class="form-group">
-            <div class="col-sm-12">
-                <label for="images">تصویر</label>
-                <label class="form-control">
-                    <input type="file" id="images" name="images">
-                </label>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-sm-6">
-                <label for="price">قیمت</label>
-                <input class="form-control " id="price" type="text" name="price" placeholder="تگ ها را وارد کنید"
-                       value="{{ $courses->price }}">
-            </div>
+            <br>
+            <label for="description">توضیحات</label>
+            <textarea class="form-control" id="description" rows="6" name="description"
+                      placeholder="متن را وارد کنید">{{ $episode->description }}</textarea>
         </div>
         <div class="form-group">
             <div class="col-sm-6">
+                <label for="videoUrl">آدرس قسمت</label>
+                <input type="text" class="form-control" name="videoUrl" id="viedoUrl" value="{{ $episode->videoUrl }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <label for="number">شماره دوره</label>
+                <input type="number" class="form-control" name="number" id="number" value="{{ $episode->number }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <br>
+                <label for="time">زمان دوره</label>
+                <input type="text" class="form-control" name="time" id="time" value="{{ $episode->time }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <br>
                 <label for="tags">تگ ها</label>
                 <input class="form-control " id="tags" type="text" name="tags" placeholder="تگ ها را وارد کنید"
-                       value="{{ $courses->tags }}">
+                       value="{{ $episode->tags }}">
             </div>
+            <br>
         </div>
         <div class="form-group col-sm-12">
             <br>

@@ -6,6 +6,9 @@ use App\Article;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class ArticleController extends AdminController
 {
@@ -38,18 +41,18 @@ class ArticleController extends AdminController
      */
     public function store(ArticleRequest $request)
     {
-        auth()->loginUsingId(170);
-        $file = $request->file('images');
-        $imageUrl = $this->uploadImages($file);
-        auth()->user()->article()->create(array_merge($request->all() , ['images' => $imageUrl]));
-        return redirect(route('Article.index'));
+            $user_id = random_int(1,100);
+            $file = $request->file('images');
+            $imageUrl = $this->uploadImages($file);
+            Article::create(array_merge($request->all() , ['images' => $imageUrl , "user_id" => $user_id]));
+            return redirect(route('Article.index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Article  $article
-     * @return \Illuminate\Http\Response
+     * @param  \App\Article $article
+     * @return void
      */
     public function show(Article $article)
     {

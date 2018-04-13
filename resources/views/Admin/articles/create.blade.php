@@ -12,6 +12,9 @@
     <form action="{{ route('Article.store') }}" method="post" class="form-horizontal" enctype="multipart/form-data"
           style="text-align: right">
         @include('Admin.section.errors')
+        @if(Session::has('message'))
+            <p class="alert alert-info">{{ Session::get('message') }}</p>
+        @endif
         {{ csrf_field() }}
         <div class="form-group">
             <label for="title">موضوع</label>

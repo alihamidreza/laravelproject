@@ -9,7 +9,7 @@
     </div>
     <a href="{{ route('Episode.create') }}" class="btn btn-sm btn-outline-dark">اضافه کردن قسمت</a>
     <div class="table-responsive">
-        <table class="table table-striped table-sm table-hover table-bordered   ">
+        <table class="table table-striped table-sm table-hover table-bordered">
             <thead>
             <tr>
                 <th>عنوان</th>
@@ -28,17 +28,17 @@
                     <td>{{ $episode->commentCount }}</td>
                     <td>{{ $episode->downloadCount }}</td>
                     <td>
-                        <form method="post" action="/admin/Article/{{$episode->id}}">
+                        <form method="post" action="/admin/Episode/{{$episode->id}}">
                             {{ method_field('delete') }}
                             {{ csrf_field() }}
                             <div class="">
                                 <button type="submit" class="btn btn-sm btn-outline-danger">حذف کردن</button>
-                                <a href="{{ route('Article.edit' , ['Article' => $episode->id]) }}" class="btn btn-sm btn-outline-warning">ویرایش</a>
+                                <a href="{{ route('Episode.edit' , ['Episode' => $episode->id]) }}" class="btn btn-sm btn-outline-warning">ویرایش</a>
                             </div>
                         </form>
                     </td>
                     <td>
-                        <a href="{{ route('ArticleComments.show' , ['article' => $episode->slug]) }}" class="btn btn-sm btn-outline-primary">مشاهده</a>
+                        <a href="{{ route('ArticleComments.show' , ['Episode' => $episode->slug]) }}" class="btn btn-sm btn-outline-primary">مشاهده</a>
                     </td>
                 </tr>
             @endforeach

@@ -38,10 +38,10 @@ class CourseController extends AdminController
      */
     public function store(CourseRequest $request)
     {
-        auth()->loginUsingId(170);
+        $user_id = random_int(1,100);
         $file = $request->file('images');
         $imageUrl = $this->uploadImages($file);
-        auth()->user()->course()->create(array_merge($request->all() , ['images' => $imageUrl]));
+        Course::create(array_merge($request->all() , ['images' => $imageUrl , "user_id" => $user_id]));
         return redirect(route('Course.index'));
     }
 

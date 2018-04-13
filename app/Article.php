@@ -27,11 +27,15 @@ class Article extends Model
 
     public function path()
     {
-        return "/article/$this->slug";
+        return "/Article/$this->slug";
     }
 
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

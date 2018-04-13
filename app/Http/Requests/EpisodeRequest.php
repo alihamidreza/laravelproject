@@ -13,7 +13,7 @@ class EpisodeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,14 @@ class EpisodeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'course_id' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'videoUrl' => 'required',
+            'time' => 'required',
+            'tags' => 'required',
+            'number' => 'required',
+            'type' => 'required'
         ];
     }
 }

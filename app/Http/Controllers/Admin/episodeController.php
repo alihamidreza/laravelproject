@@ -16,7 +16,7 @@ class episodeController extends AdminController
      */
     public function index()
     {
-        $episodes = Episode::latest()->paginate(15);
+        $episodes = Episode::latest()->paginate(10);
         return view('Admin.episodes.all' , compact('episodes'));
     }
 
@@ -40,7 +40,7 @@ class episodeController extends AdminController
     {
         $episode = Episode::create($request->all());
         $this->setCourseTime($episode);
-        return redirect(route('episodes.index'));
+        return redirect(route('Episode.index'));
     }
 
     /**
@@ -62,8 +62,8 @@ class episodeController extends AdminController
      */
     public function edit($id)
     {
-        $episodes = Episode::where('id' , "=" , $id)->first();
-        return view('Admin.episodes.edit' , compact('episodes'));
+        $episode = Episode::where('id' , "=" , $id)->first();
+        return view('Admin.episodes.edit' , compact('episode'));
     }
 
     /**
@@ -74,12 +74,13 @@ class episodeController extends AdminController
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function update(EpisodeRequest $request, Episode $episode)
+    public function update(EpisodeRequest $request, $id)
     {
-        $episode->update($request->all());
-        $this->setCourseTime($episode);
-
-        return redirect(route('episodes.index'));
+        $episode = $request->all();
+        $data = $request->except(['_token' , '_method']);
+        Episode::where('id' , $id)->update($data);
+        /*$this->setCourseTime($episode);*/
+        return redirect(route('Episode.index'));
     }
 
     /**

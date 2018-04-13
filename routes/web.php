@@ -14,10 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
 Route::namespace('Admin')->prefix('admin')->group(function (){
-    $this->get('/' , 'PanelController@index');
-    $this->resource('Article' , 'ArticleController');
-    $this->resource('Course' , 'CourseController');
-    $this->resource('Episode' , 'EpisodeController');
+    $this->get('/' , 'PanelController@index')->middleware('auth');
+    $this->resource('Article' , 'ArticleController')->middleware('auth');
+    $this->resource('Course' , 'CourseController')->middleware('auth');
+    $this->resource('Episode' , 'EpisodeController')->middleware('auth');
     $this->get('/Article/{article}/comments' , 'ArticleController@comments')->name('ArticleComments.show');
 });

@@ -44,7 +44,7 @@
         <div class="form-group">
             <div class="col-sm-6">
                 <label for="price">قیمت</label>
-                <input class="form-control " id="price" type="text" name="price" placeholder="قیمت را وارد کنید"
+                <input class="form-control " id="price" type="number" name="price" placeholder="قیمت را وارد کنید"
                        value="{{ old('price') }}">
             </div>
             <div class="col-sm-6">

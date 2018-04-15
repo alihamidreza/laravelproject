@@ -2,14 +2,15 @@
 @section('script')
     <script src="/ckeditor/ckeditor.js"></script>
     <script>
-        CKEDITOR.replace('body' ,{
-            filebrowserUploadUrl : 'admin/panel/upload-image',
-            filebrowserImageUploadUrl : 'admin/panel/upload-image'
+        CKEDITOR.replace('body', {
+            filebrowserUploadUrl: 'admin/panel/upload-image',
+            filebrowserImageUploadUrl: 'admin/panel/upload-image'
         });
     </script>
 @endsection
 @section('content')
-    <form action="{{ route('Course.update' , ['Course' => $courses->id]) }}" method="post" class="form-horizontal" enctype="multipart/form-data"
+    <form action="{{ route('Course.update' , ['Course' => $courses->id]) }}" method="post" class="form-horizontal"
+          enctype="multipart/form-data"
           style="text-align: right">
 
         @include('Admin.section.errors')
@@ -37,10 +38,13 @@
         </div>
         <div class="form-group">
             <div class="col-sm-12">
-                <img src="{{ $courses->images}}" width="100" height="100">
+                <div style="width: 200px;height: 200px"><a href="/{{ $courses->images }}"><img
+                                src="/{{ $courses->images}}"
+                                style="object-fit: cover;max-width: 100%;max-height: 100%; margin: auto;"></a>
+                </div>
             </div>
         </div>
-<div class="form-group">
+        <div class="form-group">
             <div class="col-sm-12">
                 <label for="images">تصویر</label>
                 <label class="form-control">

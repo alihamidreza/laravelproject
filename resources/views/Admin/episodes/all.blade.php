@@ -13,6 +13,7 @@
             <thead>
             <tr>
                 <th>عنوان</th>
+                <th>وضعیت قسمت</th>
                 <th>تعداد بازدید</th>
                 <th>تعداد کامنت</th>
                 <th>تعداد دانلود</th>
@@ -24,6 +25,13 @@
             @foreach($episodes as $episode)
                 <tr>
                     <td><a href="{{ $episode->path() }}">{{ $episode->title }}</a></td>
+                    <td>
+                        @if($episode->type == 'free')
+                            رایگان
+                            @else
+                                قفل
+                        @endif
+                    </td>
                     <td>{{ $episode->viewCount }}</td>
                     <td>{{ $episode->commentCount }}</td>
                     <td>{{ $episode->downloadCount }}</td>

@@ -52,7 +52,6 @@
                 </label>
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-sm-6">
                 <label for="price">قیمت</label>

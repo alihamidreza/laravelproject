@@ -71,12 +71,24 @@ class CourseController extends AdminController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Course  $course
+     * @param Request $request
+     * @param  \App\Course $course
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $course)
     {
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+            'type' => 'required',
+            'price' => 'required',
+            'tags' => 'required',
+        ]);
+        if ($request->images){
+            $file = $request->file('images');
+            $imageUrl = $this->uploadImages($file);
+            Course::where('id', $course)->update(['images' => $imageUrl]);
+        }
         $title = $request->input('title');
         $type = $request->input('type');
         $body = $request->input('body');

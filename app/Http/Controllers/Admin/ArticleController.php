@@ -80,12 +80,17 @@ class ArticleController extends AdminController
      */
     public function update(Request $request , $article)
     {
+        if ($request->images){
+            $file = $request->file('images');
+            $imageUrl = $this->uploadImages($file);
+            Article::where('id', $article)->update(['images' => $imageUrl]);
+        }
         $title = $request->input('title');
         $description = $request->input('description');
         $body = $request->input('body');
         $tags = $request->input('tags');
         Article::where('id' , $article)->update(['title'=>$title , 'description'=>$description , 'body'=>$body , 'tags'=>$tags]);
-        return back();
+        return redirect(route("Article.index"));
     }
 
     /**

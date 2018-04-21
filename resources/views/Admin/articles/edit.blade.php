@@ -32,7 +32,10 @@
         </div>
         <div class="form-group">
             <div class="col-sm-12">
-                <img src="{{ $articles->images}}" width="100" height="100">
+                <div style="width: 200px;height: 200px"><a href="/{{ $articles->images }}"><img
+                                src="/{{ $articles->images}}"
+                                style="object-fit: cover;max-width: 100%;max-height: 100%; margin: auto;"></a>
+                </div>
             </div>
         </div>
 <div class="form-group">

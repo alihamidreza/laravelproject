@@ -27,12 +27,14 @@
                     آمار<span class="badge" style="background-color: #32383e;color: white;margin-right: 5px;">  0  </span>
                 </a>
             </li>
+            @can('show-comment')
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <span data-feather="users"></span>
                     کامنت ها<span class="badge" style="background-color: #32383e;color: white;margin-right: 5px;">  0  </span>
                 </a>
             </li>
+            @endcan
         </ul>
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
             <span>محتوا وبسایت</span>

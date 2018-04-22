@@ -23,4 +23,12 @@ Route::namespace('Admin')->prefix('admin')->group(function (){
     $this->resource('Course' , 'CourseController');
     $this->resource('Episode' , 'EpisodeController');
     $this->get('/Article/{article}/comments' , 'ArticleController@comments')->name('ArticleComments.show');
+
+    $this->resource('roles' , 'RoleController');
+    $this->resource('permissions' , 'PermissionController');
+
+
+    $this->group(['prefix' => 'users'] , function (){
+        $this->get('/' , 'UserController@index');
+    });
 });

@@ -2,33 +2,33 @@
     <div class="sidebar-sticky" align="right">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" href="/panel">
+                <a class="nav-link active" href="/admin">
                     <span data-feather="home"></span>
                     صفحه اصلی <span class="sr-only">(current)</span>
                 </a>
             </li>
-
+            @can('show-buys')
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <span data-feather="shopping-cart"></span>
                                    خریدها<span class="badge" style="background-color: #32383e;color: white;margin-right: 5px;">  0  </span>
                 </a>
-
             </li>
-
+            @endcan
             <li class="nav-item">
                 <a class="nav-link" href="/admin/users">
                     <span data-feather="users"></span>
                     کاربران<span class="badge" style="background-color: #32383e;color: white;margin-right: 5px;">  0  </span>
                 </a>
             </li>
-
+            @can('show-charts')
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <span data-feather="bar-chart-2"></span>
                     آمار<span class="badge" style="background-color: #32383e;color: white;margin-right: 5px;">  0  </span>
                 </a>
             </li>
+            @endcan
             @can('show-comment')
             <li class="nav-item">
                 <a class="nav-link" href="#">
@@ -45,7 +45,7 @@
             </a>
         </h6>
         <ul class="nav flex-column mb-2">
-            @can('show-article')
+            @can('show-articles')
             <li class="nav-item">
                 <a class="nav-link" href="/admin/Article">
                     <span data-feather="file-text"></span>
@@ -53,18 +53,22 @@
                 </a>
             </li>
             @endcan
+            @can('show-courses')
             <li class="nav-item">
                 <a class="nav-link" href="/admin/Course">
                     <span data-feather="file-text"></span>
                     دوره ها
                 </a>
             </li>
+            @endcan
+            @can('show-episodes')
             <li class="nav-item">
                 <a class="nav-link" href="/admin/Episode">
                     <span data-feather="file-text"></span>
                     قسمت ها
                 </a>
             </li>
+            @endcan
         </ul>
     </div>
 </nav>

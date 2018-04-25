@@ -67,6 +67,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
+        auth()->loginUsingId(4);
         return view('Admin.roles.edit' , compact('role'));
     }
 
@@ -79,7 +80,14 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $this->validate($request , [
+            'permission_id' => 'required',
+            'name' => 'required',
+            'label' => 'required'
+        ]);
+        $role->update($request->all());
+        $role->permissions()->sync($request->input('permission_id'));
+        return redirect(route('roles.index'));
     }
 
     /**

@@ -9,7 +9,7 @@
     </div>
     <div class="btn-group">
         <a href="{{ route('roles.index') }}" class="btn btn-sm btn-primary">سطوح دسترسی</a>
-        <a href="{{ route('Article.create') }}" class="btn btn-sm btn-success">کاربران مدیریت</a>
+        <a href="{{ route('level.index') }}" class="btn btn-sm btn-success">کاربران مدیریت</a>
     </div>
     <div class="table-responsive">
         <table class="table table-striped table-sm table-hover table-bordered   ">

@@ -30,5 +30,6 @@ Route::namespace('Admin')->prefix('admin')->group(function (){
 
     $this->group(['prefix' => 'users'] , function (){
         $this->get('/' , 'UserController@index');
+        $this->resource('level' , 'LevelManageController' , ['parameters' => ['level' => 'user']]);
     });
 });

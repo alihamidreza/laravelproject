@@ -1,7 +1,7 @@
 @extends('Admin.master')
 @section('content')
 
-    <form action="{{ route('roles.store') }}" method="post" class="form-horizontal" enctype="multipart/form-data"
+    <form action="{{ route('permissions.store') }}" method="post" class="form-horizontal" enctype="multipart/form-data"
           style="text-align: right">
         @include('Admin.section.errors')
         @if(Session::has('message'))
@@ -17,16 +17,6 @@
             <label for="label">توضیخات</label>
             <input class="form-control" id="label" type="text" name="label"
                    placeholder="توضیخات را وارد کنید" value="{{ old('label') }}">
-        </div>
-        <div class="form-group">
-            <div class="col-sm-12">
-                <label for="permission_id">دسترسی ها</label>
-                <select class="form-control" name="permission_id[]" id="permission_id">
-                    @foreach(App\Permission::latest()->get() as $permission)
-                    <option value="{{ $permission->id }}">{{ $permission->name }} - {{ $permission->label }}</option>
-                    @endforeach
-                </select>
-            </div>
         </div>
         <div class="form-group col-sm-12">
             <br>

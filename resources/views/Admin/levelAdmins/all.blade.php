@@ -34,7 +34,7 @@
                                     {{ csrf_field() }}
                                     <div class="">
                                         <button type="submit" class="btn btn-sm btn-outline-danger">حذف کردن</button>
-                                        <a href="{{ route('roles.edit' , ['role' => $user->id]) }}" class="btn btn-sm btn-outline-warning">ویرایش</a>
+                                        <a href="{{ route('level.edit' , ['user' => $user->id]) }}" class="btn btn-sm btn-warning">ویرایش</a>
                                     </div>
                                 </form>
                             </td>

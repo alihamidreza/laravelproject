@@ -28,7 +28,7 @@ class LevelManageController extends Controller
            'user_id' => 'required',
            'role_id' => 'required'
         ]);
-        User::find($request->input('user_id'))->roles->sync($request->input('role_id'));
+        User::find($request->input('user_id'))->roles()->sync($request->input('role_id'));
         return redirect(route('level.index'));
     }
 
@@ -42,13 +42,14 @@ class LevelManageController extends Controller
 
     public function edit(User $user)
     {
-        return view('Admin.levelAdmins.edit' , compact('user'));
+        $roles = Role::where('name' , $user->roles->pluck('name'))->first();
+        return view('Admin.levelAdmins.edit' , compact('user') , compact('roles'));
     }
 
 
     public function update(Request $request , User $user)
     {
-        $user->roles->sync($request->input('role_id'));
+        $user->roles()->sync($request->input('role_id'));
         return redirect(route('level.index'));
     }
 }

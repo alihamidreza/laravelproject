@@ -15,12 +15,14 @@
                 </a>
             </li>
             @endcan
+            @can('show-members')
             <li class="nav-item">
                 <a class="nav-link" href="/admin/users">
                     <span data-feather="users"></span>
                     کاربران<span class="badge" style="background-color: #32383e;color: white;margin-right: 5px;">  0  </span>
                 </a>
             </li>
+            @endcan
             @can('show-charts')
             <li class="nav-item">
                 <a class="nav-link" href="#">
@@ -45,7 +47,7 @@
             </a>
         </h6>
         <ul class="nav flex-column mb-2">
-            @can('show-articles')
+            @can('show-article')
             <li class="nav-item">
                 <a class="nav-link" href="/admin/Article">
                     <span data-feather="file-text"></span>

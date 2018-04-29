@@ -67,7 +67,6 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        auth()->loginUsingId(4);
         return view('Admin.roles.edit' , compact('role'));
     }
 

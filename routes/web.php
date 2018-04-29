@@ -11,13 +11,33 @@
 |
 */
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/404', function () {
+    return view('errors.404');
+});
 
-Auth::routes();
+Route::group(['namespace' => 'Auth'] , function (){
+    // Authentication Routes...
+    $this->get('login', 'LoginController@showLoginForm')->name('login');
+    $this->post('login', 'LoginController@login');
+    $this->get('logout', 'LoginController@logout')->name('logout');
 
-Route::namespace('Admin')->prefix('admin')->group(function (){
+    // Registration Routes...
+    $this->get('register', 'RegisterController@showRegistrationForm')->name('register');
+    $this->post('register', 'RegisterController@register');
+
+    // Password Reset Routes...
+    $this->get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    $this->post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    $this->get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
+    $this->post('password/reset', 'ResetPasswordController@reset');
+});
+
+Route::group(['namespace' => 'Admin' , 'middleware' => ['auth:web' , 'checkAdmin'] , 'prefix' => 'admin'] , function (){
     $this->get('/' , 'PanelController@index');
     $this->resource('Article' , 'ArticleController');
     $this->resource('Course' , 'CourseController');

@@ -12,7 +12,6 @@
 */
 
 
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -20,7 +19,7 @@ Route::get('/404', function () {
     return view('errors.404');
 });
 
-Route::group(['namespace' => 'Auth'] , function (){
+Route::group(['namespace' => 'Auth'], function () {
     // Authentication Routes...
     $this->get('login', 'LoginController@showLoginForm')->name('login');
     $this->post('login', 'LoginController@login');
@@ -37,19 +36,19 @@ Route::group(['namespace' => 'Auth'] , function (){
     $this->post('password/reset', 'ResetPasswordController@reset');
 });
 
-Route::group(['namespace' => 'Admin' , 'middleware' => ['auth:web' , 'checkAdmin'] , 'prefix' => 'admin'] , function (){
-    $this->get('/' , 'PanelController@index');
-    $this->resource('Article' , 'ArticleController');
-    $this->resource('Course' , 'CourseController');
-    $this->resource('Episode' , 'EpisodeController');
-    $this->get('/Article/{article}/comments' , 'ArticleController@comments')->name('ArticleComments.show');
+Route::group(['namespace' => 'Admin', 'middleware' => ['auth:web', 'checkAdmin'], 'prefix' => 'admin'], function () {
+    $this->get('/', 'PanelController@index');
+    $this->resource('Article', 'ArticleController');
+    $this->resource('Course', 'CourseController');
+    $this->resource('Episode', 'EpisodeController');
+    $this->get('/Article/{article}/comments', 'ArticleController@comments')->name('ArticleComments.show');
 
-    $this->resource('roles' , 'RoleController');
-    $this->resource('permissions' , 'PermissionController');
+    $this->resource('roles', 'RoleController');
+    $this->resource('permissions', 'PermissionController');
 
 
-    $this->group(['prefix' => 'users'] , function (){
-        $this->get('/' , 'UserController@index');
-        $this->resource('level' , 'LevelManageController' , ['parameters' => ['level' => 'user']]);
+    $this->group(['prefix' => 'users'], function () {
+        $this->get('/', 'UserController@index');
+        $this->resource('level', 'LevelManageController', ['parameters' => ['level' => 'user']]);
     });
 });

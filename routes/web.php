@@ -13,8 +13,11 @@
 
 
 Route::get('/', function () {
-    return view('welcome');
+//    return view('welcome');
 });
+
+Route::get('/user/active/email/{token}' , 'UserController@activation')->name('activation.account');
+
 Route::get('/404', function () {
     return view('errors.404');
 });

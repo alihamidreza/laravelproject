@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArticlesTable extends Migration
+class CreateActivationCodesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,14 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('activation_codes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('title');
-            $table->string('slug');
-            $table->text('body');
-            $table->text('description');
-            $table->string('images');
-            $table->string('tags');
-            $table->integer('commentCount')->default(0);
-            $table->integer('viewCount')->default(0);
+
+            $table->string('code');
+            $table->boolean('used')->default(false);
+            $table->dateTime('expire');
             $table->timestamps();
         });
     }
@@ -36,6 +32,6 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('activation_codes');
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Events;
 
+use App\ActivationCode;
+use App\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -14,14 +16,18 @@ class UserActivation
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $user ;
+    public $activationCode ;
+
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param User $user
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        $this->user = $user;
+        $this->activationCode = ActivationCode::createCode($user)->code;
     }
 
     /**

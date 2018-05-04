@@ -3,8 +3,10 @@
 namespace App\Listeners\UserRegistered;
 
 use App\Events\UserActivation;
+use App\Mail\ActivationUserAccount;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Mail;
 
 class SendEmailNotification
 {
@@ -26,6 +28,6 @@ class SendEmailNotification
      */
     public function handle(UserActivation $event)
     {
-        //
+        Mail::to($event->user)->send(new ActivationUserAccount($event->user , $event->activationCode));
     }
 }

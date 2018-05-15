@@ -15,7 +15,7 @@ class ActivationCode extends Model
     {
         return $this->belongsTo(User::class);
     }
-
+    
     public function scopeCreateCode($query , $user)
     {
         $code = $this->code();

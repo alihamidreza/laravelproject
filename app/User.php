@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'active'
     ];
 
     /**
@@ -56,5 +56,10 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->level == 'admin' ? true : false;
+    }
+
+    public function activationCode()
+    {
+        return $this->hasMany(ActivationCode::class);
     }
 }
